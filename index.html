@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تدريب سوبرمايد - SuperMind Trainer</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Tajawal:wght@200;300;400;500;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="description" content="تطبيق تدريب الطلاب على جدول الضرب بطريقة تفاعلية وممتعة">
+</head>
+<body class="light-theme">
+    <!-- Professional Header Component -->
+    <header class="header" role="banner">
+        <div class="container">
+            <!-- Logo Section - Left side with semantic structure -->
+            <a href="index.html" class="logo" aria-label="العودة إلى الصفحة الرئيسية">
+                <span class="logo-icon" aria-hidden="true">
+                    <img src="favicon.ico" alt="SuperMind Trainer" style="width: 24px; height: 24px;">
+                </span>
+                <span class="logo-text" data-ar="تدريب سوبرمايد" data-en="SuperMind Trainer">تدريب سوبرمايد</span>
+            </a>
+            
+            <!-- Header Controls - Right side with proper ARIA labels -->
+            <nav class="header-controls" role="toolbar" aria-label="إعدادات التطبيق">
+                <button 
+                    id="theme-toggle" 
+                    class="btn btn-icon" 
+                    type="button"
+                    aria-label="تبديل بين الوضع الفاتح والداكن"
+                    aria-pressed="false"
+                    title="تبديل الثيم">
+                    <span class="theme-icon" aria-hidden="true">🌙</span>
+                </button>
+                <button 
+                    id="language-toggle" 
+                    class="btn btn-icon" 
+                    type="button"
+                    aria-label="تبديل اللغة بين العربية والإنجليزية"
+                    aria-pressed="false"
+                    title="تبديل اللغة">
+                    <span class="lang-icon" aria-hidden="true"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="welcome-section">
+                <h2 class="welcome-title" data-ar="مرحباً بك في تدريب سوبرمايد" data-en="Welcome to SuperMind Trainer">
+                    مرحباً بك في تدريب سوبرمايد
+                </h2>
+                <p class="welcome-description" data-ar="اختر نوع التدريب المناسب لك" data-en="Choose the training mode that suits you">
+                    اختر نوع التدريب المناسب لك
+                </p>
+            </div>
+
+            <div class="mode-selection">
+                <div class="mode-card" data-mode="training">
+                    <div class="mode-icon">📚</div>
+                    <h3 class="mode-title" data-ar="وضع التدريب" data-en="Training Mode">وضع التدريب</h3>
+                    <p class="mode-description" data-ar="تدرب على جدول الضرب مع ملاحظات فورية" data-en="Practice multiplication with instant feedback">
+                        تدرب على جدول الضرب مع ملاحظات فورية
+                    </p>
+                    <button class="btn btn-primary mode-btn" data-mode="training">
+                        <span data-ar="ابدأ التدريب" data-en="Start Training">ابدأ التدريب</span>
+                    </button>
+                </div>
+
+                <div class="mode-card" data-mode="leaderboard">
+                    <div class="mode-icon">🏆</div>
+                    <h3 class="mode-title" data-ar="لوحة النتائج" data-en="Leaderboard">لوحة النتائج</h3>
+                    <p class="mode-description" data-ar="شاهد أفضل النتائج المحفوظة" data-en="View your best saved scores">
+                        شاهد أفضل النتائج المحفوظة
+                    </p>
+                    <button class="btn btn-secondary mode-btn" data-mode="leaderboard">
+                    <span data-ar="عرض النتائج" data-en="View Results">عرض النتائج</span>
+                    </button>
+                </div>
+                
+                <div class="mode-card" data-mode="exam">
+                    <div class="mode-icon">📝</div>
+                    <h3 class="mode-title" data-ar="وضع الاختبار" data-en="Exam Mode">وضع الاختبار</h3>
+                    <p class="mode-description" data-ar="اختبر معرفتك مع تقييم نهائي" data-en="Test your knowledge with final evaluation">
+                        اختبر معرفتك مع تقييم نهائي
+                    </p>
+                    <button class="btn btn-primary mode-btn" data-mode="exam">
+                        <span data-ar="ابدأ الاختبار" data-en="Start Exam">ابدأ الاختبار</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-questions">0</div>
+                    <div class="stat-label" data-ar="إجمالي الأسئلة" data-en="Total Questions">إجمالي الأسئلة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="average-score">0%</div>
+                    <div class="stat-label" data-ar="متوسط النتيجة (%)" data-en="Average Score (%)">متوسط النتيجة (%)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-time">0</div>
+                    <div class="stat-label" data-ar="إجمالي الوقت (دقائق)" data-en="Total Time (minutes)">إجمالي الوقت (دقائق)</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal" role="dialog" aria-labelledby="settings-title" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="settings-title" data-ar="إعدادات الاختبار" data-en="Test Settings">إعدادات الاختبار</h2>
+                <button class="modal-close" aria-label="إغلاق">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label for="question-count" data-ar="عدد الأسئلة" data-en="Number of Questions">عدد الأسئلة</label>
+                        <input type="number" id="question-count" name="questionCount" min="1" max="100" value="10" 
+                               data-placeholder-ar="أدخل عدد الأسئلة" data-placeholder-en="Enter number of questions">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="difficulty" data-ar="مستوى الصعوبة" data-en="Difficulty">مستوى الصعوبة</label>
+                        <select id="difficulty" name="difficulty">
+                            <option value="easy" data-ar="سهل" data-en="Easy">سهل</option>
+                            <option value="medium" data-ar="متوسط" data-en="Medium" selected>متوسط</option>
+                            <option value="hard" data-ar="صعب" data-en="Hard">صعب</option>
+                        </select>
+                    </div>
+
+                    <!-- Multiplication rule selection removed: generator now uses fixed rule (A:0..10, B:10..100) -->
+
+                    <div class="form-group">
+                        <label for="timer-mode" data-ar="وضع المؤقت" data-en="Timer Mode">وضع المؤقت</label>
+                        <select id="timer-mode" name="timerMode">
+                            <option value="per-question" data-ar="مؤقت لكل سؤال" data-en="Per Question">مؤقت لكل سؤال</option>
+                            <option value="total-time" data-ar="مؤقت إجمالي" data-en="Total Time">مؤقت إجمالي</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="timer-duration-group">
+                        <label for="timer-duration" data-ar="مدة المؤقت (ثانية)" data-en="Timer Duration (seconds)">مدة المؤقت (ثانية)</label>
+                        <input type="number" id="timer-duration" name="timerDuration" min="5" max="300" value="30"
+                               data-placeholder-ar="أدخل المدة بالثواني" data-placeholder-en="Enter duration in seconds">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="sound-enabled" name="soundEnabled" checked>
+                            <span data-ar="تفعيل الأصوات" data-en="Enable Sounds">تفعيل الأصوات</span>
+                        </label>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancel-settings">
+                    <span data-ar="إلغاء" data-en="Cancel">إلغاء</span>
+                </button>
+                <button type="button" class="btn btn-primary" id="start-test">
+                    <span data-ar="ابدأ" data-en="Start">ابدأ</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p data-ar="©2025 تدريب سوبرمايد - تطوير كنان قصاب" data-en="© 2024 SuperMind Trainer - Interactive Educational Development">
+                ©2025 تدريب سوبرمايد - تطوير كنان قصاب
+            </p>
+        </div>
+    </footer>
+
+    <script type="module" src="assets/js/utils.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

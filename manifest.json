@@ -1,0 +1,127 @@
+{
+  "name": "تدريب سوبرمايد - SuperMind Trainer",
+  "short_name": "SuperMind Trainer",
+  "description": "تطبيق تدريب للطلاب على جداول الضرب بطريقة تفاعلية وممتعة مع وضعي التدريب والاختبار",
+  "version": "2.0.0",
+  "start_url": "/SuperMind-Train",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#4f46e5",
+  "background_color": "#ffffff",
+  "lang": "ar",
+  "dir": "rtl",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "assets/icons/Logo72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/Logo96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/Logo128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/Logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "games", "productivity", "kids"],
+  "screenshots": [
+    {
+      "src": "assets/screenshots/desktop-screenshot.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "SuperMind Trainer on desktop"
+    },
+    {
+      "src": "assets/screenshots/mobile-screenshot.png",
+      "sizes": "375x667",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "SuperMind Trainer on mobile"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "بدء التدريب",
+      "short_name": "تدريب",
+      "description": "ابدأ جلسة تدريب جديدة",
+      "url": "/assets/html/training.html",
+      "icons": [
+        {
+          "src": "assets/icons/training-con.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "بدء الاختبار",
+      "short_name": "اختبار",
+      "description": "ابدأ اختبار جديد",
+      "url": "/assets/html/exam.html",
+      "icons": [
+        {
+          "src": "assets/icons/exam-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "لوحة النتائج",
+      "short_name": "النتائج",
+      "description": "عرض أفضل النتائج",
+      "url": "/assets/html/leaderboard.html",
+      "icons": [
+        {
+          "src": "assets/icons/leaderboard-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "عرض النتائج",
+      "short_name": "نتائج",
+      "description": "عرض تفاصيل النتائج الأخيرة",
+      "url": "/assets/html/results.html",
+      "icons": [
+        {
+          "src": "assets/icons/leaderboard-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "display_override": ["window-controls-overlay", "standalone"],
+  "protocol_handlers": [],
+  "file_handlers": [],
+  "share_target": {
+    "action": "/SuperMind-Train",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}

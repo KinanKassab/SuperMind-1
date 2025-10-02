@@ -74,12 +74,19 @@ export class QuestionGenerator {
   generateAnswerOptions(correctAnswer, factorA, factorB, difficulty) {
     const options = [correctAnswer];
     const distractors = this.generateDistractors(correctAnswer, factorA, factorB, difficulty);
-    
+
     options.push(...distractors);
-    
-    // Shuffle options and return with positions
-    const shuffledOptions = shuffleArray(options);
-    
+
+    while (options.length < 4) {
+      const filler = this.generateRandomDistractor(correctAnswer, difficulty);
+      if (!options.includes(filler) && filler !== correctAnswer) {
+        options.push(filler);
+      }
+    }
+
+    const limited = options.slice(0, 4);
+    const shuffledOptions = shuffleArray(limited);
+
     return shuffledOptions.map((value, index) => ({
       value,
       position: index + 1,
@@ -99,19 +106,26 @@ export class QuestionGenerator {
     const distractors = [];
     const strategies = this.getDistractorStrategies(difficulty);
 
-    // Use different strategies to generate distractors
     strategies.forEach(strategy => {
-      const distractor = this.applyDistractorStrategy(strategy, correctAnswer, factorA, factorB);
-      if (distractor !== correctAnswer && !distractors.includes(distractor) && distractor >= 0) {
-        distractors.push(distractor);
+      try {
+        const distractor = this.applyDistractorStrategy(strategy, correctAnswer, factorA, factorB);
+        if (typeof distractor === 'number' && Number.isFinite(distractor)) {
+          const value = Math.floor(distractor);
+          if (value >= 0 && value !== correctAnswer && !distractors.includes(value)) {
+            distractors.push(value);
+          }
+        }
+      } catch (e) {
       }
     });
 
-    // Fill remaining slots with random values if needed
     while (distractors.length < 3) {
       const randomDistractor = this.generateRandomDistractor(correctAnswer, difficulty);
-      if (!distractors.includes(randomDistractor) && randomDistractor !== correctAnswer) {
-        distractors.push(randomDistractor);
+      if (typeof randomDistractor === 'number' && Number.isFinite(randomDistractor)) {
+        const value = Math.floor(randomDistractor);
+        if (value !== correctAnswer && value >= 0 && !distractors.includes(value)) {
+          distractors.push(value);
+        }
       }
     }
 
@@ -130,7 +144,8 @@ export class QuestionGenerator {
       hard: ['off_by_one', 'swap_digits', 'factor_variation', 'complex_math', 'random_close']
     };
 
-    return strategies[difficulty] || strategies.normal;
+    const key = difficulty === 'medium' ? 'normal' : difficulty;
+    return strategies[key] || strategies.normal;
   }
 
   /**
@@ -306,8 +321,9 @@ export class QuestionGenerator {
       normal: 45,
       hard: 30
     };
-    
-    return limits[difficulty] || limits.normal;
+
+    const key = difficulty === 'medium' ? 'normal' : difficulty;
+    return limits[key] || limits.normal;
   }
 
   /**

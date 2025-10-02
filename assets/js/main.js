@@ -1,6 +1,6 @@
 // SuperMind Trainer - Main Page Controller
 
-import { Storage, showNotification } from './utils.js';
+import { Storage, showNotification, formatTime } from './utils.js';
 
 /**
  * Main Page Controller
@@ -377,7 +377,7 @@ export class MainController {
     }
 
     if (this.elements.totalTimeEl) {
-      this.elements.totalTimeEl.textContent = this.formatTime(stats.totalTime);
+      this.elements.totalTimeEl.textContent = formatTime(stats.totalTime);
     }
   }
 

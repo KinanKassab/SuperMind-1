@@ -191,6 +191,7 @@ export class MainController {
    */
   toggleTimerDurationGroup(timerMode) {
     if (this.elements.timerDurationGroup) {
+      // Both timer modes need duration setting
       this.elements.timerDurationGroup.style.display = 'block';
     }
   }
